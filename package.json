@@ -15,12 +15,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/felquis/react-credit-cards.git"
+    "url": "git+https://github.com/felquis/react-credit-cards-2.git"
   },
   "bugs": {
-    "url": "https://github.com/felquis/react-credit-cards/issues"
+    "url": "https://github.com/felquis/react-credit-cards-2/issues"
   },
-  "homepage": "https://github.com/felquis/react-credit-cards#readme",
+  "homepage": "https://github.com/felquis/react-credit-cards-2#readme",
   "license": "MIT",
   "main": "lib/index.js",
   "module": "es/index.js",
