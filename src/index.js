@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useEffect } from 'react';
+import React, { useCallback, useMemo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { cardTypesMap, getCardType, setInitialValidCardTypes, validateLuhn } from './utils/cardHelpers';
@@ -18,16 +18,16 @@ function ReactCreditCards({
   placeholders = {
     name: 'YOUR NAME HERE',
   },
-  callback }) {
+  callback,
+}) {
+  const [cardTypes, setCardTypes] = useState(setInitialValidCardTypes());
   const validCardTypes = useMemo(() => {
-    const initialValidCardTypes = setInitialValidCardTypes();
-
     if (acceptedCards?.length) {
-      return initialValidCardTypes.filter(card => acceptedCards.includes(card));
+      return cardTypes.filter(card => acceptedCards.includes(card));
     }
 
-    return initialValidCardTypes;
-  }, [acceptedCards]);
+    return cardTypes;
+  }, [acceptedCards, cardTypes]);
 
   const cardOptions = useMemo(() => {
     let updatedIssuer = 'unknown';
@@ -130,22 +130,27 @@ function ReactCreditCards({
 
   const updateValidCardTypes = useCallback((acceptedCardsInput) => {
     if (acceptedCardsInput.length) {
-      return validCardTypes.filter(card => acceptedCardsInput.includes(card));
+      setCardTypes(cardTypes.filter(card => acceptedCardsInput.includes(card)));
+      return;
     }
 
-    return validCardTypes;
-  }, [validCardTypes]);
+    const initialValidCardTypes = setInitialValidCardTypes();
+    setCardTypes(initialValidCardTypes);
+  }, [cardTypes]);
 
   useEffect(() => {
     if (cardNumber !== number) {
       /* istanbul ignore else */
       if (typeof callback === 'function') {
-        callback(cardOptions, validateLuhn(cardNumber));
+        callback(cardOptions, validateLuhn(number));
       }
     }
 
-    updateValidCardTypes(acceptedCards);
-  }, [acceptedCards, callback, cardOptions, cardNumber, updateValidCardTypes, number]);
+    const initialValidCardTypes = setInitialValidCardTypes();
+    if (initialValidCardTypes.toString() !== cardTypes.toString()) {
+      updateValidCardTypes(acceptedCards);
+    }
+  }, [acceptedCards, callback, cardOptions, cardNumber, updateValidCardTypes, number, cardTypes]);
 
   return (
     <div key="Cards" className="rccs">
@@ -246,13 +251,6 @@ ReactCreditCards.propTypes = {
 
 ReactCreditCards.defaultProps = {
   acceptedCards: [],
-  locale: {
-    valid: 'valid thru',
-  },
-  placeholders: {
-    name: 'YOUR NAME HERE',
-  },
-  preview: false,
 };
 
 export default ReactCreditCards;
