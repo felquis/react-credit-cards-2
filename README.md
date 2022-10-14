@@ -52,7 +52,7 @@ const PaymentForm = () => {
       />
       <form>
         <input
-          type="tel"
+          type="number"
           name="number"
           placeholder="Card Number"
           value={state.number}
