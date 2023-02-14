@@ -5,3 +5,4 @@ es/
 lib/
 node_modules/
 webpack.stats.json
+dist/
