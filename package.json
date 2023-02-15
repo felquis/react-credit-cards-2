@@ -103,11 +103,11 @@
   ],
   "size-limit": [
     {
-      "path": "./dist/esm/index.js",
+      "path": "./dist/es/index.js",
       "limit": "6 kB"
     },
     {
-      "path": "./dist/cjs/index.js",
+      "path": "./dist/lib/index.js",
       "limit": "6 kB"
     }
   ],
