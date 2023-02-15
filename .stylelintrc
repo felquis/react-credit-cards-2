@@ -11,26 +11,16 @@
       }
     ],
     "at-rule-no-unknown": null,
-    "block-opening-brace-space-before": "always",
-    "block-closing-brace-newline-after": [
-      "always",
-      {
-        "ignoreAtRules": ["if", "else"]
-      }
-    ],
     "color-named": "never",
-    "declaration-colon-newline-after": null,
     "declaration-empty-line-before": null,
     "declaration-property-value-disallowed-list": {
       "/^border/": ["none"]
     },
     "function-url-quotes": "always",
-    "indentation": [2, { "ignore": ["value"] }],
     "max-nesting-depth": 5,
     "no-descending-specificity": null,
     "no-duplicate-selectors": true,
     "no-empty-source": [true, { "severity": "warning" }],
-    "no-missing-end-of-source-newline": true,
     "number-max-precision": 4,
     "property-no-vendor-prefix": true,
     "selector-class-pattern": "^((?:-{1,2}|_{2})?[a-z0-9]+(?:(?:-{1,2}|_{2})[a-z0-9]+)*)(?:-{1,2}|_{2})?$",
@@ -38,7 +28,6 @@
     "selector-max-specificity": ["0,6,4"],
     "selector-no-qualifying-type": [true, { "ignore": ["class"] }],
     "selector-pseudo-element-colon-notation": "single",
-    "string-quotes": "single",
     "unit-disallowed-list": [["rem", "em"]],
     "order/order": [
       "custom-properties",
@@ -63,6 +52,8 @@
     "scss/dollar-variable-no-missing-interpolation": true,
     "scss/double-slash-comment-whitespace-inside": "always",
     "scss/operator-no-unspaced": true,
-    "scss/selector-no-redundant-nesting-selector": true
+    "scss/selector-no-redundant-nesting-selector": true,
+    "annotation-no-unknown": null,
+    "function-no-unknown": null
   }
 }
