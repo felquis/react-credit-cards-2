@@ -17,6 +17,7 @@ export default [
         format: "cjs",
         sourcemap: true,
         name: "lib",
+        exports: "auto",
       },
       {
         file: packageJson.module,
@@ -34,8 +35,8 @@ export default [
     ],
   },
   {
-    input: "dist/esm/types/index.d.ts",
-    output: [{ file: "dist/index.d.ts", format: "esm" }],
+    input: "dist/es/types/index.d.ts",
+    output: [{ file: packageJson.types, format: "esm" }],
     external: [/\.css$/],
     plugins: [dts()],
   },

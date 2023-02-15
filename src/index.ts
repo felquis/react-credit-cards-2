@@ -1,1 +1,1 @@
-export { ReactCreditCards as default } from "./ReactCreditCard";
+export { ReactCreditCards as default } from "./ReactCreditCards";

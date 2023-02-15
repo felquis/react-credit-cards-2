@@ -10,14 +10,14 @@ run("rm -rf .tmp/")
     run("postcss .tmp/styles.css --use autoprefixer --no-map -d .tmp/")
   )
   .then(() => run("mv .tmp/styles.css .tmp/styles-compiled.css"))
-  // .then(() => run("mkdir -p es lib"))
+  // .then(() => run("mkdir -p dist/es dist/lib"))
   .then(() =>
     run(
-      "cp .tmp/styles-compiled.css dist/esm/ && cp .tmp/styles-compiled.css dist/cjs/"
+      "cp .tmp/styles-compiled.css dist/es/ && cp .tmp/styles-compiled.css dist/lib/"
     )
   )
   .then(() =>
-    run("cp src/styles.scss dist/esm/ && cp src/styles.scss dist/cjs/")
+    run("cp src/styles.scss dist/es/ && cp src/styles.scss dist/lib/")
   )
   .then(() => console.log("✔ Styles have been build"))
   .catch((err) => {

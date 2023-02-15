@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/felquis/react-credit-cards-2#readme",
   "license": "MIT",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/lib/index.js",
+  "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -83,12 +83,10 @@
     "watch-run": "^1.2.5"
   },
   "scripts": {
-    "build": "npm run clean && rollup -c && npm run build:styles",
-    "old-build": "npm run clean && npm run build:commonjs && npm run build:es && npm run build:styles",
-    "build:commonjs": "cross-env BABEL_ENV=commonjs babel src -d lib",
-    "build:es": "cross-env NODE_ENV=production babel src -d es",
+    "build:code": "rollup -c",
     "build:styles": "node tools/build-styles",
-    "watch": "npm run build && watch-run -p 'src/**/*.js' npm run build:es",
+    "build": "npm run clean && npm run build:code && npm run build:styles",
+    "watch": "npm run build && watch-run -p 'src/**/.{ts,tsx,scss}' npm run build",
     "clean": "rimraf dist",
     "lint": "eslint --max-warnings=0 src",
     "format": "prettier --write './src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./prettier.config.cjs",
@@ -106,11 +104,11 @@
   ],
   "size-limit": [
     {
-      "path": "./es/index.js",
+      "path": "./dist/esm/index.js",
       "limit": "6 kB"
     },
     {
-      "path": "./lib/index.js",
+      "path": "./dist/cjs/index.js",
       "limit": "6 kB"
     }
   ],
