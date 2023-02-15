@@ -12,7 +12,7 @@ export interface CallbackArgument {
   maxLength: number;
 }
 
-export type Focused = "name" | "number" | "expiry" | "cvc";
+export type Focused = "name" | "number" | "expiry" | "cvc" | "";
 
 export interface ReactCreditCardsProps {
   acceptedCards?: ReadonlyArray<string> | undefined;
