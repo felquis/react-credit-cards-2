@@ -10,20 +10,22 @@
       "always",
       {
         "except": ["blockless-after-blockless", "first-nested"],
-        "ignoreAtRules": [ "else" ],
-        "ignore": ["after-comment"] }
+        "ignoreAtRules": ["else"],
+        "ignore": ["after-comment"]
+      }
     ],
     "at-rule-no-unknown": null,
     "block-opening-brace-space-before": "always",
     "block-closing-brace-newline-after": [
-      "always", {
-        "ignoreAtRules": [ "if", "else" ]
+      "always",
+      {
+        "ignoreAtRules": ["if", "else"]
       }
     ],
     "color-named": "never",
     "declaration-colon-newline-after": null,
     "declaration-empty-line-before": null,
-    "declaration-property-value-blacklist": {
+    "declaration-property-value-disallowed-list": {
       "/^border/": ["none"]
     },
     "function-url-quotes": "always",
@@ -41,7 +43,7 @@
     "selector-no-qualifying-type": [true, { "ignore": ["class"] }],
     "selector-pseudo-element-colon-notation": "single",
     "string-quotes": "single",
-    "unit-blacklist": [["rem", "em"]],
+    "unit-disallowed-list": [["rem", "em"]],
     "order/order": [
       "custom-properties",
       "dollar-variables",
