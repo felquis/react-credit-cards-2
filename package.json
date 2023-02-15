@@ -38,6 +38,7 @@
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "dependencies": {
+    "credit-card-type": "^9.1.0",
     "luhn": "^2.4.1",
     "payment": "^2.3.0"
   },
@@ -52,7 +53,6 @@
     "@typescript-eslint/parser": "^5.52.0",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.8.0",
     "autoprefixer": "^10.2.6",
-    "credit-card-type": "^9.1.0",
     "cross-env": "^7.0.3",
     "enzyme": "^3.11.0",
     "eslint": "^8.34.0",
