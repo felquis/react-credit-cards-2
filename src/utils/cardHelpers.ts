@@ -5,22 +5,17 @@ import { dankort, laser, visaElectron } from "./cardTypes";
 
 /**
  * Check if a credit card number is valid using the Luhn algorithm
- * @returns {boolean}
  */
 export const validateLuhn = luhn.validate;
 
 /**
  * Given a credit card number in the format (XXXX XXXX XXXX...) return it as a string without any spaces
- * @param {*} number
- * @returns {string} number
  */
 export const sanitizeNumber = (number: string | number) =>
   number.toString().trim().replace(" ", "");
 
 /**
  * Return the issuer of a given credit card number or `unknown` if the issuer can't be identified
- * @param {string|number} cardNumber
- * @returns {string} cardType
  */
 export const getCardType = (cardNumber: string | number) => {
   const potentialCardTypes = creditCardType(sanitizeNumber(cardNumber));
@@ -36,7 +31,6 @@ export const getCardType = (cardNumber: string | number) => {
 
 /**
  * Configure the credit card types supported and return an array of valid types
- * @returns {string[]} validCardTypes
  */
 export const setInitialValidCardTypes = () => {
   creditCardType.updateCard(cardTypes.MAESTRO, {
