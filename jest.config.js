@@ -16,7 +16,7 @@ module.exports = {
   ],
   testRegex: "/test/.*?\\.(test|spec)\\.js$",
   collectCoverage: false,
-  collectCoverageFrom: ["src/**/*.{js,jsx}"],
+  collectCoverageFrom: ["src/**/*.{js,jsx}", "src/**/*.{ts,tsx}"],
   coverageReporters: ["json", "lcovonly", "text", "clover"],
   coverageThreshold: {
     global: {
