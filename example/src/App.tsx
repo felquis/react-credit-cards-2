@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import ReactCreditCards, { Focused } from "../..";
 import "./App.css";
-import "../../dist/es/styles-compiled.css";
+import "../../es/styles-compiled.css";
 
 // https://stripe.com/docs/testing
 const CardNumbers = [

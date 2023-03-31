@@ -35,7 +35,7 @@ module.exports = [
     ],
   },
   {
-    input: "dist/es/types/index.d.ts",
+    input: "es/types/index.d.ts",
     output: [{ file: packageJson.types, format: "esm" }],
     external: [/\.css$/],
     plugins: [dts()],

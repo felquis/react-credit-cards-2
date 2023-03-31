@@ -19,27 +19,27 @@ npm install --save react-credit-cards-2
 ### Usage
 
 ```tsx
-import React, { useState } from 'react';
-import Cards from 'react-credit-cards-2';
+import React, { useState } from "react";
+import Cards from "react-credit-cards-2";
 
 const PaymentForm = () => {
   const [state, setState] = useState({
-    number: '',
-    expiry: '',
-    cvc: '',
-    name: '',
-    focus: '',
+    number: "",
+    expiry: "",
+    cvc: "",
+    name: "",
+    focus: "",
   });
 
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
-    
+
     setState((prev) => ({ ...prev, [name]: value }));
-  }
+  };
 
   const handleInputFocus = (evt) => {
     setState((prev) => ({ ...prev, focus: evt.target.name }));
-  }
+  };
 
   return (
     <div>
@@ -63,20 +63,20 @@ const PaymentForm = () => {
       </form>
     </div>
   );
-}
+};
 
 export default PaymentForm;
 ```
 
-If you are using SASS, import the CSS `react-credit-cards-2/dist/lib/styles.scss` 
+If you are using SASS, import the CSS `react-credit-cards-2/lib/styles.scss`
 
 Or you can import the CSS:  
-`import 'react-credit-cards-2/dist/es/styles-compiled.css';`
+`import 'react-credit-cards-2/es/styles-compiled.css';`
 
 ### Features
 
 - We support all credit card issuers available in [credit-card-type](https://github.com/braintree/credit-card-type) plus
- Dankort, Laser, and Visa Electron.
+  Dankort, Laser, and Visa Electron.
 
 ## Props
 
@@ -143,32 +143,32 @@ Here's how you can get started developing locally:
 
 1. Clone this repo and link it to your global `node_modules`:
 
-      $ git clone https://github.com/felquis/react-credit-cards-2.git
+   $ git clone https://github.com/felquis/react-credit-cards-2.git
 
-      $ cd react-credit-cards-2
+   $ cd react-credit-cards-2
 
-      $ npm install
+   $ npm install
 
-      $ npm link
+   $ npm link
 
 2. Download the demo source from [codesandbox](https://codesandbox.io/s/ovvwzkzry9).
 3. Unzip it to the desired directory.
 4. Install the dependencies
 
-    $ cd react-credit-cards-demo
+   $ cd react-credit-cards-demo
 
-    $ npm install
+   $ npm install
 
-    $ npm link react-credit-cards
+   $ npm link react-credit-cards
 
 5. On the `react-credit-cards` directory, start the watcher:
 
-    $ npm run watch
-    
+   $ npm run watch
+
 6. On the `react-credit-cards-demo` directory, start the demo app:
 
-    $ npm start
-    
+   $ npm start
+
 7. 🎉 Done! The demo app will be running on: `http://localhost:3000/`. Your local changes should be automatically reflected there.
 
 Check [npm-link](https://docs.npmjs.com/cli/link.html) for detailed instructions.
@@ -189,4 +189,5 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 This project is licensed under the [MIT License](LICENSE.md).
 
 ###### Made with ❤️ at [AMARO](https://amaro.com).
+
 ###### Maintained with ❤️ by the community

@@ -12,13 +12,9 @@ run("rm -rf .tmp/")
   .then(() => run("mv .tmp/styles.css .tmp/styles-compiled.css"))
   // .then(() => run("mkdir -p dist/es dist/lib"))
   .then(() =>
-    run(
-      "cp .tmp/styles-compiled.css dist/es/ && cp .tmp/styles-compiled.css dist/lib/"
-    )
+    run("cp .tmp/styles-compiled.css es/ && cp .tmp/styles-compiled.css lib/")
   )
-  .then(() =>
-    run("cp src/styles.scss dist/es/ && cp src/styles.scss dist/lib/")
-  )
+  .then(() => run("cp src/styles.scss es/ && cp src/styles.scss lib/"))
   .then(() => console.log("✔ Styles have been build"))
   .catch((err) => {
     console.error(err);
