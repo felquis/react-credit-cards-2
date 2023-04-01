@@ -6,6 +6,10 @@ import {
   setInitialValidCardTypes,
   validateLuhn,
 } from "./utils/cardHelpers";
+import {
+  normalizePlaceholdersInput,
+  validateForMandatoryProps,
+} from "./utils/propHelpers";
 
 export interface CallbackArgument {
   issuer: string;
@@ -13,6 +17,10 @@ export interface CallbackArgument {
 }
 
 export type Focused = "name" | "number" | "expiry" | "cvc" | "";
+
+export interface ReactCreditCardsPlaceholdersType {
+  name?: string;
+}
 
 export interface ReactCreditCardsProps {
   acceptedCards?: ReadonlyArray<string> | undefined;
@@ -29,7 +37,6 @@ export interface ReactCreditCardsProps {
 }
 
 export function ReactCreditCards(props: ReactCreditCardsProps) {
-  checkMandatoryProps(props);
   const {
     acceptedCards = [],
     number,
@@ -42,11 +49,11 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
       valid: "valid thru",
     },
     name,
-    placeholders = {
-      name: "YOUR NAME HERE",
-    },
+    placeholders: placeholdersFromProps,
     callback,
-  } = props;
+  } = validateForMandatoryProps(props);
+
+  const placeholders = normalizePlaceholdersInput(placeholdersFromProps);
 
   const [cardTypes, setCardTypes] = React.useState(setInitialValidCardTypes());
   const validCardTypes = React.useMemo(() => {
@@ -292,25 +299,4 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
       </div>
     </div>
   );
-}
-
-function checkMandatoryProps(props: ReactCreditCardsProps) {
-  const requiredPropKeys: (keyof ReactCreditCardsProps)[] = [
-    "number",
-    "name",
-    "cvc",
-    "expiry",
-  ];
-  // if any of required props aren't passed in (i.e. they are undefined), then throw an error
-  const missingKeys: string[] = [];
-  requiredPropKeys.forEach((key) => {
-    if (props[key] === undefined) {
-      missingKeys.push(key);
-    }
-  });
-  if (missingKeys.length > 0) {
-    throw new Error(
-      `ReactCreditCards2 - Missing mandatory prop(s): ${missingKeys.join(", ")}`
-    );
-  }
 }
