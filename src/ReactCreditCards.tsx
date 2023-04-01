@@ -29,6 +29,7 @@ export interface ReactCreditCardsProps {
 }
 
 export function ReactCreditCards(props: ReactCreditCardsProps) {
+  checkMandatoryProps(props);
   const {
     acceptedCards = [],
     number,
@@ -291,4 +292,25 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
       </div>
     </div>
   );
+}
+
+function checkMandatoryProps(props: ReactCreditCardsProps) {
+  const requiredPropKeys: (keyof ReactCreditCardsProps)[] = [
+    "number",
+    "name",
+    "cvc",
+    "expiry",
+  ];
+  // if any of required props aren't passed in (i.e. they are undefined), then throw an error
+  const missingKeys: string[] = [];
+  requiredPropKeys.forEach((key) => {
+    if (props[key] === undefined) {
+      missingKeys.push(key);
+    }
+  });
+  if (missingKeys.length > 0) {
+    throw new Error(
+      `ReactCreditCards2 - Missing mandatory prop(s): ${missingKeys.join(", ")}`
+    );
+  }
 }
