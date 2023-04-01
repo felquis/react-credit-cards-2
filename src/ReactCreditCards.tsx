@@ -119,7 +119,7 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
     }
 
     while (nextNumber.length < maxLength) {
-      nextNumber += "•";
+      nextNumber += starValue;
     }
 
     if (
@@ -128,29 +128,29 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
     ) {
       const format = [0, 4, 10];
       const limit = [4, 6, 5];
-      nextNumber = `${nextNumber.substr(
-        format[0],
-        limit[0]
-      )} ${nextNumber.substr(format[1], limit[1])} ${nextNumber.substr(
-        format[2],
-        limit[2]
-      )}`;
+      const parts = [
+        nextNumber.substr(format[0], limit[0]),
+        nextNumber.substr(format[1], limit[1]),
+        nextNumber.substr(format[2], limit[2]),
+      ];
+      nextNumber = parts.join(" ");
     } else if (nextNumber.length > 16) {
       const format = [0, 4, 8, 12];
       const limit = [4, 7];
-      nextNumber = `${nextNumber.substr(
-        format[0],
-        limit[0]
-      )} ${nextNumber.substr(format[1], limit[0])} ${nextNumber.substr(
-        format[2],
-        limit[0]
-      )} ${nextNumber.substr(format[3], limit[1])}`;
+      const parts = [
+        nextNumber.substr(format[0], limit[0]),
+        nextNumber.substr(format[1], limit[0]),
+        nextNumber.substr(format[2], limit[0]),
+      ];
+      nextNumber = parts.join(" ");
     } else {
       for (let i = 1; i < maxLength / 4; i++) {
         const space_index = i * 4 + (i - 1);
-        nextNumber = `${nextNumber.slice(0, space_index)} ${nextNumber.slice(
-          space_index
-        )}`;
+        const parts = [
+          nextNumber.slice(0, space_index),
+          nextNumber.slice(space_index),
+        ];
+        nextNumber = parts.join(" ");
       }
     }
 
@@ -265,7 +265,7 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
                 ? "rccs__number--large"
                 : "",
               focused === "number" ? "rccs--focused" : "",
-              cardNumber.substr(0, 1) !== "•" ? "rccs--filled" : "",
+              cardNumber.substr(0, 1) !== starValue ? "rccs--filled" : "",
             ]
               .join(" ")
               .trim()}
@@ -287,7 +287,7 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
             className={[
               "rccs__expiry",
               focused === "expiry" ? "rccs--focused" : "",
-              cardExpiry.substr(0, 1) !== "•" ? "rccs--filled" : "",
+              cardExpiry.substr(0, 1) !== starValue ? "rccs--filled" : "",
             ]
               .join(" ")
               .trim()}
