@@ -3,6 +3,8 @@ import type {
   ReactCreditCardsPlaceholdersType,
 } from "../ReactCreditCards";
 
+export const starValue = "•";
+
 export function validateForMandatoryProps(
   props: ReactCreditCardsProps
 ): ReactCreditCardsProps {
@@ -32,5 +34,7 @@ export function normalizePlaceholdersInput(
 ): Required<ReactCreditCardsPlaceholdersType> {
   return {
     name: placeholders?.name ?? "YOUR NAME HERE",
+    expiryMonth: placeholders?.expiryMonth ?? `${starValue}${starValue}`,
+    expiryYear: placeholders?.expiryYear ?? `${starValue}${starValue}`,
   };
 }

@@ -7,6 +7,7 @@ import {
   validateLuhn,
 } from "./utils/cardHelpers";
 import {
+  starValue, // this is the star symbol = "•"
   normalizePlaceholdersInput,
   validateForMandatoryProps,
 } from "./utils/propHelpers";
@@ -20,6 +21,8 @@ export type Focused = "name" | "number" | "expiry" | "cvc" | "";
 
 export interface ReactCreditCardsPlaceholdersType {
   name?: string;
+  expiryMonth?: string;
+  expiryYear?: string;
 }
 
 export interface ReactCreditCardsProps {
@@ -32,7 +35,7 @@ export interface ReactCreditCardsProps {
   locale?: { valid: string } | undefined;
   name: string;
   number: string | number;
-  placeholders?: { name: string } | undefined;
+  placeholders?: ReactCreditCardsPlaceholdersType | undefined;
   preview?: boolean | undefined;
 }
 
@@ -160,26 +163,37 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
     let year = "";
 
     if (date.includes("/")) {
-      [month, year] = date.split("/");
+      [month, year] = date.split("/"); // assigns month and year to let vars above
     } else if (date.length) {
       month = date.substr(0, 2);
       year = date.substr(2, 6);
     }
 
-    while (month.length < 2) {
-      month += "•";
-    }
-
     if (year.length > 2) {
+      // if year if more than 2 digits, trim it down to 2
       year = year.substr(2, 4);
     }
 
-    while (year.length < 2) {
-      year += "•";
+    if (month.length === 0 && year.length === 0) {
+      // if month and year are empty, set to the placeholder
+      year = placeholders.expiryYear;
+    } else {
+      while (year.length < 2) {
+        year += starValue;
+      }
+    }
+
+    // this checking is done after so the placeholder can be added with consideration of the month's original length
+    if (month.length === 0) {
+      month = placeholders.expiryMonth;
+    } else {
+      while (month.length < 2) {
+        month += starValue;
+      }
     }
 
     return `${month}/${year}`;
-  }, [expiry]);
+  }, [expiry, placeholders.expiryMonth, placeholders.expiryYear]);
 
   const updateValidCardTypes = React.useCallback(
     (acceptedCardsInput: readonly string[]) => {

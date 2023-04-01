@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import ReactCreditCards, { Focused } from "../..";
+import ReactCreditCards, { Focused, ReactCreditCardsProps } from "../..";
 import "./App.css";
 import "../../dist/es/styles-compiled.css";
 
@@ -18,8 +18,23 @@ const CardNumbers = [
 ];
 const CardNames = ["", "John Doe"];
 const CardFocusStates: Focused[] = ["", "number", "name", "cvc", "expiry"];
-const CardExpiryOptions = ["", "12/2025", "12/25", "12/5", "12/05", "12/2056"];
+const CardExpiryOptions = [
+  "",
+  "1",
+  "12",
+  "12/5",
+  "12/25",
+  "12/2025",
+  "12/05",
+  "12/2056",
+];
 const CardCvcOptions = ["", "123", "1234"];
+const CardPlaceholderOptions: ReactCreditCardsProps["placeholders"][] = [
+  undefined,
+  { name: "Your name" },
+  { name: "Your name", expiryMonth: "MM" },
+  { name: "Your name", expiryMonth: "MM", expiryYear: "YY" },
+];
 
 function App() {
   const [number, setNumber] = useState<string | number>("");
@@ -27,6 +42,8 @@ function App() {
   const [focused, setFocused] = useState<Focused>("");
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");
+  const [placeholders, setPlaceholders] =
+    useState<ReactCreditCardsProps["placeholders"]>(undefined);
 
   return (
     <div className="App">
@@ -37,9 +54,17 @@ function App() {
         number={number}
         expiry={expiry}
         focused={focused}
+        placeholders={placeholders}
       />
 
-      <div style={{ display: "flex", width: "100%", gap: "1rem" }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          width: "100%",
+          gap: "1rem",
+        }}
+      >
         <div>
           <p>Set a card number</p>
           <div style={{ display: "flex", flexDirection: "column" }}>
@@ -146,6 +171,28 @@ function App() {
                 {cardFocus === "" ? "Empty" : cardFocus}
               </button>
             ))}
+          </div>
+        </div>
+        <div>
+          <p>Set placeholders</p>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {CardPlaceholderOptions.map((cardPlaceholder) => {
+              const stringified = JSON.stringify(cardPlaceholder);
+              return (
+                <button
+                  key={cardPlaceholder ? stringified : "undefined-placeholder"}
+                  onClick={() => setPlaceholders(cardPlaceholder)}
+                  style={{
+                    fontWeight:
+                      JSON.stringify(placeholders) === stringified
+                        ? "bold"
+                        : undefined,
+                  }}
+                >
+                  {cardPlaceholder ? stringified : "Empty"}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
