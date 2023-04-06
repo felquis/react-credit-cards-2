@@ -6,6 +6,11 @@ import {
   setInitialValidCardTypes,
   validateLuhn,
 } from "./utils/cardHelpers";
+import {
+  starValue, // this is the star symbol = "•"
+  normalizePlaceholdersInput,
+  validateForMandatoryProps,
+} from "./utils/propHelpers";
 
 export interface CallbackArgument {
   issuer: string;
@@ -13,6 +18,12 @@ export interface CallbackArgument {
 }
 
 export type Focused = "name" | "number" | "expiry" | "cvc" | "";
+
+export interface ReactCreditCardsPlaceholdersType {
+  name?: string;
+  expiryMonth?: string;
+  expiryYear?: string;
+}
 
 export interface ReactCreditCardsProps {
   acceptedCards?: ReadonlyArray<string> | undefined;
@@ -24,7 +35,7 @@ export interface ReactCreditCardsProps {
   locale?: { valid: string } | undefined;
   name: string;
   number: string | number;
-  placeholders?: { name: string } | undefined;
+  placeholders?: ReactCreditCardsPlaceholdersType | undefined;
   preview?: boolean | undefined;
 }
 
@@ -41,11 +52,11 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
       valid: "valid thru",
     },
     name,
-    placeholders = {
-      name: "YOUR NAME HERE",
-    },
+    placeholders: placeholdersFromProps,
     callback,
-  } = props;
+  } = validateForMandatoryProps(props);
+
+  const placeholders = normalizePlaceholdersInput(placeholdersFromProps);
 
   const [cardTypes, setCardTypes] = React.useState(setInitialValidCardTypes());
   const validCardTypes = React.useMemo(() => {
@@ -108,7 +119,7 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
     }
 
     while (nextNumber.length < maxLength) {
-      nextNumber += "•";
+      nextNumber += starValue;
     }
 
     if (
@@ -117,29 +128,30 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
     ) {
       const format = [0, 4, 10];
       const limit = [4, 6, 5];
-      nextNumber = `${nextNumber.substr(
-        format[0],
-        limit[0]
-      )} ${nextNumber.substr(format[1], limit[1])} ${nextNumber.substr(
-        format[2],
-        limit[2]
-      )}`;
+      const parts = [
+        nextNumber.substr(format[0], limit[0]),
+        nextNumber.substr(format[1], limit[1]),
+        nextNumber.substr(format[2], limit[2]),
+      ];
+      nextNumber = parts.join(" ");
     } else if (nextNumber.length > 16) {
       const format = [0, 4, 8, 12];
       const limit = [4, 7];
-      nextNumber = `${nextNumber.substr(
-        format[0],
-        limit[0]
-      )} ${nextNumber.substr(format[1], limit[0])} ${nextNumber.substr(
-        format[2],
-        limit[0]
-      )} ${nextNumber.substr(format[3], limit[1])}`;
+      const parts = [
+        nextNumber.substr(format[0], limit[0]),
+        nextNumber.substr(format[1], limit[0]),
+        nextNumber.substr(format[2], limit[0]),
+        nextNumber.substr(format[3], limit[1]),
+      ];
+      nextNumber = parts.join(" ");
     } else {
       for (let i = 1; i < maxLength / 4; i++) {
         const space_index = i * 4 + (i - 1);
-        nextNumber = `${nextNumber.slice(0, space_index)} ${nextNumber.slice(
-          space_index
-        )}`;
+        const parts = [
+          nextNumber.slice(0, space_index),
+          nextNumber.slice(space_index),
+        ];
+        nextNumber = parts.join(" ");
       }
     }
 
@@ -152,26 +164,37 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
     let year = "";
 
     if (date.includes("/")) {
-      [month, year] = date.split("/");
+      [month, year] = date.split("/"); // assigns month and year to let vars above
     } else if (date.length) {
       month = date.substr(0, 2);
       year = date.substr(2, 6);
     }
 
-    while (month.length < 2) {
-      month += "•";
-    }
-
     if (year.length > 2) {
+      // if year if more than 2 digits, trim it down to 2
       year = year.substr(2, 4);
     }
 
-    while (year.length < 2) {
-      year += "•";
+    if (month.length === 0 && year.length === 0) {
+      // if month and year are empty, set to the placeholder
+      year = placeholders.expiryYear;
+    } else {
+      while (year.length < 2) {
+        year += starValue;
+      }
+    }
+
+    // this checking is done after so the placeholder can be added with consideration of the month's original length
+    if (month.length === 0) {
+      month = placeholders.expiryMonth;
+    } else {
+      while (month.length < 2) {
+        month += starValue;
+      }
     }
 
     return `${month}/${year}`;
-  }, [expiry]);
+  }, [expiry, placeholders.expiryMonth, placeholders.expiryYear]);
 
   const updateValidCardTypes = React.useCallback(
     (acceptedCardsInput: readonly string[]) => {
@@ -243,7 +266,7 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
                 ? "rccs__number--large"
                 : "",
               focused === "number" ? "rccs--focused" : "",
-              cardNumber.substr(0, 1) !== "•" ? "rccs--filled" : "",
+              cardNumber.substr(0, 1) !== starValue ? "rccs--filled" : "",
             ]
               .join(" ")
               .trim()}
@@ -265,7 +288,7 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
             className={[
               "rccs__expiry",
               focused === "expiry" ? "rccs--focused" : "",
-              cardExpiry.substr(0, 1) !== "•" ? "rccs--filled" : "",
+              cardExpiry.substr(0, 1) !== starValue ? "rccs--filled" : "",
             ]
               .join(" ")
               .trim()}
