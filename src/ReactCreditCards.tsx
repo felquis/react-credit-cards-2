@@ -141,6 +141,7 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
         nextNumber.substr(format[0], limit[0]),
         nextNumber.substr(format[1], limit[0]),
         nextNumber.substr(format[2], limit[0]),
+        nextNumber.substr(format[3], limit[1]),
       ];
       nextNumber = parts.join(" ");
     } else {
