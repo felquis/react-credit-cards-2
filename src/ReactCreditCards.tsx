@@ -211,8 +211,9 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
   ]);
 
   return (
-    <div key="Cards" className="rccs">
+    <div key="Cards" className="rccs" data-testid="rccs">
       <div
+        data-testid="rccs__card"
         className={[
           "rccs__card",
           `rccs__card--${cardIssuer}`,
