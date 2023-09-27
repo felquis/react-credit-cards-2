@@ -45,27 +45,25 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle locale and placeholders updates", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       placeholders: { name: "------------" },
       locale: { valid: "Expiration" },
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent(currentProps.placeholders.name);
-    expect(rccsCard).toHaveTextContent(currentProps.locale.valid);
+    expect(rccsCard).toHaveTextContent("------------");
+    expect(rccsCard).toHaveTextContent("Expiration");
   });
 
   it("should handle new number props (American Express)", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "378282246310005",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -83,12 +81,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new number props (Dankort)", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "5019717010103742",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -106,12 +103,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new number props (Diners)", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "30569309025904",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -129,12 +125,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new number props (Discover)", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "6011111111111117",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -152,12 +147,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new number props (Elo)", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "6362970000457013",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -175,12 +169,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new number props (Hipercard)", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "3841005899088180330",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -198,12 +191,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new number props (JCB)", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "3530111333300000",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -221,12 +213,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new number props (Laser)", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "6709359636227382",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -244,12 +235,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new number props (Maestro)", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "6304414232839699",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -267,12 +257,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new number props (Mastercard)", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "5105105105105100",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -290,12 +279,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new number props (Unionpay)", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "6240008631401148",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -313,12 +301,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new number props (Visa)", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "4012888888881881",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -336,12 +323,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new number props (Visa with 16 digits)", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "4111111111111111",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -359,12 +345,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new number props (Visa Electron)", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "4508269706217171",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -382,12 +367,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new number props with extra digits", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       number: "5512888888881881000000",
       focused: "number",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -405,12 +389,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new name props", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       name: "John Smith",
       focused: "name",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -420,12 +403,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle partial expiry props", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       expiry: "12/1",
       focused: "expiry",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -437,12 +419,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle long expiry props", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       expiry: "01/2025",
       focused: "expiry",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -454,12 +435,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle new expiry props", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       expiry: "1218",
       focused: "expiry",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -471,12 +451,11 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle empty expiry props", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       expiry: "",
       focused: "expiry",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -486,14 +465,13 @@ describe("ReactCreditCards", () => {
       "rccs--focused"
     );
   });
-  
+
   it("should handle malformatted expiry props", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       expiry: "/",
       focused: "expiry",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
@@ -505,19 +483,60 @@ describe("ReactCreditCards", () => {
   });
 
   it("should handle malformatted expiry props", () => {
-    const currentProps = {
+    renderCreditCards({
       ...props,
       cvc: "121",
       focused: "cvc",
-    };
-    renderCreditCards(currentProps);
+    });
 
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
     expect(rccsCard).toHaveTextContent("121");
-    expect(rccsCard.querySelector(".rccs__cvc")).toHaveClass(
-      "rccs--focused"
+    expect(rccsCard.querySelector(".rccs__cvc")).toHaveClass("rccs--focused");
+  });
+
+  it("should format a number into string", () => {
+    renderCreditCards({
+      ...props,
+      number: 4111111111111111,
+    });
+
+    const rccs = screen.getByTestId("rccs");
+    const rccsCard = within(rccs).getByTestId("rccs__card");
+
+    expect(typeof rccsCard.querySelector(".rccs__number").textContent).toBe(
+      "string"
     );
+  });
+
+  it("should handle preview", () => {
+    renderCreditCards({
+      ...props,
+      number: "**** **** **** 7056",
+      preview: true,
+      issuer: "hipercard",
+    });
+
+    const rccs = screen.getByTestId("rccs");
+    const rccsCard = within(rccs).getByTestId("rccs__card");
+
+    expect(rccsCard).toHaveTextContent("**** **** **** 7056");
+    expect(rccsCard).toHaveClass("rccs__card--hipercard");
+  });
+
+  it("should fail with preview set to false", () => {
+    renderCreditCards({
+      ...props,
+      number: "**** **** **** 1234",
+      preview: false,
+      issuer: "elo",
+    });
+
+    const rccs = screen.getByTestId("rccs");
+    const rccsCard = within(rccs).getByTestId("rccs__card");
+
+    expect(rccsCard).toHaveTextContent("•••• •••• •••• ••••");
+    expect(rccsCard).not.toHaveClass("rccs__card--elo");
   });
 });

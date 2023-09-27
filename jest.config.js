@@ -10,10 +10,6 @@ module.exports = {
     "^.+\\.(jpe?g|png|gif|ttf|eot|svg|md)$":
       "<rootDir>/test/__setup__/fileMock.js",
   },
-  // setupFiles: [
-  //   "<rootDir>/test/__setup__/shim.js",
-  //   "<rootDir>/test/__setup__/index.js",
-  // ],
   testRegex: "/test/.*?\\.(test|spec)\\.js$",
   collectCoverage: false,
   collectCoverageFrom: ["src/**/*.{js,jsx}", "src/**/*.{ts,tsx}"],
