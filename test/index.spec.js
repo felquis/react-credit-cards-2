@@ -38,10 +38,10 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("•••• •••• •••• ••••");
-    expect(rccsCard).toHaveTextContent("YOUR NAME HERE");
-    expect(rccsCard).toHaveTextContent("valid thru");
-    expect(rccsCard).toHaveTextContent("••/••");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("•••• •••• •••• ••••");
+    expect(rccsCard.querySelector(".rccs__name").textContent).toBe("YOUR NAME HERE");
+    expect(rccsCard.querySelector(".rccs__expiry__valid").textContent).toBe("valid thru");
+    expect(rccsCard.querySelector(".rccs__expiry__value").textContent).toBe("••/••");
   });
 
   it("should handle locale and placeholders updates", () => {
@@ -54,8 +54,8 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("------------");
-    expect(rccsCard).toHaveTextContent("Expiration");
+    expect(rccsCard.querySelector(".rccs__name").textContent).toBe("------------");
+    expect(rccsCard.querySelector(".rccs__expiry__valid").textContent).toBe("Expiration");
   });
 
   it("should handle new number props (American Express)", () => {
@@ -68,7 +68,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("3782 822463 10005");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("3782 822463 10005");
     expect(rccsCard).toHaveClass("rccs__card--american-express");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -90,7 +90,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("5019 7170 1010 3742");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("5019 7170 1010 3742");
     expect(rccsCard).toHaveClass("rccs__card--dankort");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -112,7 +112,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("3056 930902 5904");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("3056 930902 5904");
     expect(rccsCard).toHaveClass("rccs__card--diners-club");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -134,7 +134,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("6011 1111 1111 1117");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("6011 1111 1111 1117");
     expect(rccsCard).toHaveClass("rccs__card--discover");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -156,7 +156,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("6362 9700 0045 7013");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("6362 9700 0045 7013");
     expect(rccsCard).toHaveClass("rccs__card--elo");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -178,7 +178,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("3841 0058 9908 8180330");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("3841 0058 9908 8180330");
     expect(rccsCard).toHaveClass("rccs__card--hipercard");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -200,7 +200,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("3530 1113 3330 0000");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("3530 1113 3330 0000");
     expect(rccsCard).toHaveClass("rccs__card--jcb");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -222,7 +222,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("6709 3596 3622 7382");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("6709 3596 3622 7382");
     expect(rccsCard).toHaveClass("rccs__card--laser");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -244,7 +244,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("6304 4142 3283 9699");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("6304 4142 3283 9699");
     expect(rccsCard).toHaveClass("rccs__card--maestro");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -266,7 +266,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("5105 1051 0510 5100");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("5105 1051 0510 5100");
     expect(rccsCard).toHaveClass("rccs__card--mastercard");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -288,7 +288,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("6240 0086 3140 1148");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("6240 0086 3140 1148");
     expect(rccsCard).toHaveClass("rccs__card--unionpay");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -310,7 +310,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("4012 8888 8888 1881");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("4012 8888 8888 1881");
     expect(rccsCard).toHaveClass("rccs__card--visa");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -332,7 +332,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("4111 1111 1111 1111");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("4111 1111 1111 1111");
     expect(rccsCard).toHaveClass("rccs__card--visa");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -354,7 +354,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("4508 2697 0621 7171");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("4508 2697 0621 7171");
     expect(rccsCard).toHaveClass("rccs__card--visa-electron");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -376,7 +376,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("5512 8888 8888 1881000");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("5512 8888 8888 1881000");
     expect(rccsCard).toHaveClass("rccs__card--mastercard");
     expect(rccsCard.querySelector(".rccs__number")).toHaveClass(
       "rccs--focused"
@@ -398,7 +398,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("John Smith");
+    expect(rccsCard.querySelector(".rccs__name").textContent).toBe("John Smith");
     expect(rccsCard.querySelector(".rccs__name")).toHaveClass("rccs--focused");
   });
 
@@ -412,7 +412,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("12/1•");
+    expect(rccsCard.querySelector(".rccs__expiry__value").textContent).toBe("12/1•");
     expect(rccsCard.querySelector(".rccs__expiry")).toHaveClass(
       "rccs--focused"
     );
@@ -428,7 +428,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("01/25");
+    expect(rccsCard.querySelector(".rccs__expiry__value").textContent).toBe("01/25");
     expect(rccsCard.querySelector(".rccs__expiry")).toHaveClass(
       "rccs--focused"
     );
@@ -444,7 +444,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("12/18");
+    expect(rccsCard.querySelector(".rccs__expiry__value").textContent).toBe("12/18");
     expect(rccsCard.querySelector(".rccs__expiry")).toHaveClass(
       "rccs--focused"
     );
@@ -460,7 +460,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("••/••");
+    expect(rccsCard.querySelector(".rccs__expiry__value").textContent).toBe("••/••");
     expect(rccsCard.querySelector(".rccs__expiry")).toHaveClass(
       "rccs--focused"
     );
@@ -476,13 +476,13 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("••/••");
+    expect(rccsCard.querySelector(".rccs__expiry__value").textContent).toBe("••/••");
     expect(rccsCard.querySelector(".rccs__expiry")).toHaveClass(
       "rccs--focused"
     );
   });
 
-  it("should handle malformatted expiry props", () => {
+  it("should handle new CVC props", () => {
     renderCreditCards({
       ...props,
       cvc: "121",
@@ -492,7 +492,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("121");
+    expect(rccsCard.querySelector(".rccs__cvc").textContent).toBe("121");
     expect(rccsCard.querySelector(".rccs__cvc")).toHaveClass("rccs--focused");
   });
 
@@ -521,7 +521,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("**** **** **** 7056");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("**** **** **** 7056");
     expect(rccsCard).toHaveClass("rccs__card--hipercard");
   });
 
@@ -536,7 +536,7 @@ describe("ReactCreditCards", () => {
     const rccs = screen.getByTestId("rccs");
     const rccsCard = within(rccs).getByTestId("rccs__card");
 
-    expect(rccsCard).toHaveTextContent("•••• •••• •••• ••••");
+    expect(rccsCard.querySelector(".rccs__number").textContent).toBe("•••• •••• •••• ••••");
     expect(rccsCard).not.toHaveClass("rccs__card--elo");
   });
 });
