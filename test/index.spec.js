@@ -251,7 +251,7 @@ describe("ReactCreditCards", () => {
     );
     expect(mockCallback).toHaveBeenCalled();
     expect(mockCallback.mock.calls[0][0]).toStrictEqual({
-      maxLength: 16,
+      maxLength: 19,
       issuer: "maestro",
     });
   });
