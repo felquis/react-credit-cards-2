@@ -73,7 +73,7 @@ export function ReactCreditCards(props: ReactCreditCardsProps) {
       maxLength = 15;
     } else if (cardTypesMap?.dinersclub.includes(updatedIssuer)) {
       maxLength = 14;
-    } else if (["hipercard", "mastercard", "visa"].includes(updatedIssuer)) {
+    } else if (["hipercard", "maestro", "mastercard", "visa"].includes(updatedIssuer)) {
       maxLength = 19;
     }
 
