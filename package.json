@@ -123,6 +123,7 @@
     "test": "jest",
     "test:coverage": "jest --bail --coverage",
     "test:watch": "jest --watch",
+    "test:matrix": "bash tools/test-react-matrix.sh",
     "size": "npm run build && size-limit",
     "validate": "npm run lint && npm run lint:styles && npm run test:coverage && npm run size",
     "prepublishOnly": "npm run validate"
